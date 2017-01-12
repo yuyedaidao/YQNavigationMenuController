@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5534CB8F1E2730AE003D5BF4 /* YQNavigationMenuCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5534CB8E1E2730AE003D5BF4 /* YQNavigationMenuCollectionLayout.swift */; };
+		5534CB901E2730AE003D5BF4 /* YQNavigationMenuCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5534CB8E1E2730AE003D5BF4 /* YQNavigationMenuCollectionLayout.swift */; };
+		5534CB911E2730AE003D5BF4 /* YQNavigationMenuCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5534CB8E1E2730AE003D5BF4 /* YQNavigationMenuCollectionLayout.swift */; };
+		5534CB931E2731E7003D5BF4 /* UIView+YQNMCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5534CB921E2731E7003D5BF4 /* UIView+YQNMCExtension.swift */; };
+		5534CB941E2731E7003D5BF4 /* UIView+YQNMCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5534CB921E2731E7003D5BF4 /* UIView+YQNMCExtension.swift */; };
+		5534CB951E2731E7003D5BF4 /* UIView+YQNMCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5534CB921E2731E7003D5BF4 /* UIView+YQNMCExtension.swift */; };
+		5534CB971E27376B003D5BF4 /* YQNavigationMenuCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5534CB961E27376B003D5BF4 /* YQNavigationMenuCollectionCell.swift */; };
+		5534CB981E27376B003D5BF4 /* YQNavigationMenuCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5534CB961E27376B003D5BF4 /* YQNavigationMenuCollectionCell.swift */; };
+		5534CB991E27376B003D5BF4 /* YQNavigationMenuCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5534CB961E27376B003D5BF4 /* YQNavigationMenuCollectionCell.swift */; };
+		5534CB9B1E2784DA003D5BF4 /* YQNavigationMenuTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5534CB9A1E2784DA003D5BF4 /* YQNavigationMenuTitleView.swift */; };
+		5534CB9C1E2784DA003D5BF4 /* YQNavigationMenuTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5534CB9A1E2784DA003D5BF4 /* YQNavigationMenuTitleView.swift */; };
+		5534CB9D1E2784DA003D5BF4 /* YQNavigationMenuTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5534CB9A1E2784DA003D5BF4 /* YQNavigationMenuTitleView.swift */; };
+		5534CB9F1E278C5B003D5BF4 /* YQNavigationMenuTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5534CB9E1E278C5B003D5BF4 /* YQNavigationMenuTitleLabel.swift */; };
+		5534CBA01E278C5B003D5BF4 /* YQNavigationMenuTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5534CB9E1E278C5B003D5BF4 /* YQNavigationMenuTitleLabel.swift */; };
+		5534CBA11E278C5B003D5BF4 /* YQNavigationMenuTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5534CB9E1E278C5B003D5BF4 /* YQNavigationMenuTitleLabel.swift */; };
 		55D4273C1E272AD7008AC89C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D4273B1E272AD7008AC89C /* AppDelegate.swift */; };
 		55D4273E1E272AD7008AC89C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D4273D1E272AD7008AC89C /* ViewController.swift */; };
 		55D427411E272AD7008AC89C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D4273F1E272AD7008AC89C /* Main.storyboard */; };
@@ -14,6 +29,9 @@
 		55D427461E272AD7008AC89C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D427441E272AD7008AC89C /* LaunchScreen.storyboard */; };
 		55D427511E272AD8008AC89C /* YQNavigationMenuControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D427501E272AD8008AC89C /* YQNavigationMenuControllerTests.swift */; };
 		55D4275C1E272AD8008AC89C /* YQNavigationMenuControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D4275B1E272AD8008AC89C /* YQNavigationMenuControllerUITests.swift */; };
+		55D4276F1E272B5A008AC89C /* YQNavigationMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D4276E1E272B5A008AC89C /* YQNavigationMenuController.swift */; };
+		55D427701E272B5A008AC89C /* YQNavigationMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D4276E1E272B5A008AC89C /* YQNavigationMenuController.swift */; };
+		55D427711E272B5A008AC89C /* YQNavigationMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D4276E1E272B5A008AC89C /* YQNavigationMenuController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +52,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5534CB8E1E2730AE003D5BF4 /* YQNavigationMenuCollectionLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YQNavigationMenuCollectionLayout.swift; sourceTree = "<group>"; };
+		5534CB921E2731E7003D5BF4 /* UIView+YQNMCExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+YQNMCExtension.swift"; sourceTree = "<group>"; };
+		5534CB961E27376B003D5BF4 /* YQNavigationMenuCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YQNavigationMenuCollectionCell.swift; sourceTree = "<group>"; };
+		5534CB9A1E2784DA003D5BF4 /* YQNavigationMenuTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YQNavigationMenuTitleView.swift; sourceTree = "<group>"; };
+		5534CB9E1E278C5B003D5BF4 /* YQNavigationMenuTitleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YQNavigationMenuTitleLabel.swift; sourceTree = "<group>"; };
 		55D427381E272AD7008AC89C /* YQNavigationMenuController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YQNavigationMenuController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D4273B1E272AD7008AC89C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55D4273D1E272AD7008AC89C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +70,7 @@
 		55D427571E272AD8008AC89C /* YQNavigationMenuControllerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YQNavigationMenuControllerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D4275B1E272AD8008AC89C /* YQNavigationMenuControllerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YQNavigationMenuControllerUITests.swift; sourceTree = "<group>"; };
 		55D4275D1E272AD8008AC89C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55D4276E1E272B5A008AC89C /* YQNavigationMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YQNavigationMenuController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +101,7 @@
 		55D4272F1E272AD7008AC89C = {
 			isa = PBXGroup;
 			children = (
+				55D427691E272B02008AC89C /* Classes */,
 				55D4273A1E272AD7008AC89C /* YQNavigationMenuController */,
 				55D4274F1E272AD8008AC89C /* YQNavigationMenuControllerTests */,
 				55D4275A1E272AD8008AC89C /* YQNavigationMenuControllerUITests */,
@@ -123,6 +148,19 @@
 				55D4275D1E272AD8008AC89C /* Info.plist */,
 			);
 			path = YQNavigationMenuControllerUITests;
+			sourceTree = "<group>";
+		};
+		55D427691E272B02008AC89C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				55D4276E1E272B5A008AC89C /* YQNavigationMenuController.swift */,
+				5534CB9E1E278C5B003D5BF4 /* YQNavigationMenuTitleLabel.swift */,
+				5534CB9A1E2784DA003D5BF4 /* YQNavigationMenuTitleView.swift */,
+				5534CB961E27376B003D5BF4 /* YQNavigationMenuCollectionCell.swift */,
+				5534CB8E1E2730AE003D5BF4 /* YQNavigationMenuCollectionLayout.swift */,
+				5534CB921E2731E7003D5BF4 /* UIView+YQNMCExtension.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,15 +231,18 @@
 				TargetAttributes = {
 					55D427371E272AD7008AC89C = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = GP4MMMES25;
 						ProvisioningStyle = Automatic;
 					};
 					55D4274B1E272AD8008AC89C = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = GP4MMMES25;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 55D427371E272AD7008AC89C;
 					};
 					55D427561E272AD8008AC89C = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = GP4MMMES25;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 55D427371E272AD7008AC89C;
 					};
@@ -259,7 +300,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5534CB9F1E278C5B003D5BF4 /* YQNavigationMenuTitleLabel.swift in Sources */,
+				5534CB9B1E2784DA003D5BF4 /* YQNavigationMenuTitleView.swift in Sources */,
 				55D4273E1E272AD7008AC89C /* ViewController.swift in Sources */,
+				5534CB931E2731E7003D5BF4 /* UIView+YQNMCExtension.swift in Sources */,
+				55D4276F1E272B5A008AC89C /* YQNavigationMenuController.swift in Sources */,
+				5534CB8F1E2730AE003D5BF4 /* YQNavigationMenuCollectionLayout.swift in Sources */,
+				5534CB971E27376B003D5BF4 /* YQNavigationMenuCollectionCell.swift in Sources */,
 				55D4273C1E272AD7008AC89C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,7 +315,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5534CB9C1E2784DA003D5BF4 /* YQNavigationMenuTitleView.swift in Sources */,
+				5534CBA01E278C5B003D5BF4 /* YQNavigationMenuTitleLabel.swift in Sources */,
+				55D427701E272B5A008AC89C /* YQNavigationMenuController.swift in Sources */,
+				5534CB981E27376B003D5BF4 /* YQNavigationMenuCollectionCell.swift in Sources */,
+				5534CB901E2730AE003D5BF4 /* YQNavigationMenuCollectionLayout.swift in Sources */,
 				55D427511E272AD8008AC89C /* YQNavigationMenuControllerTests.swift in Sources */,
+				5534CB941E2731E7003D5BF4 /* UIView+YQNMCExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +329,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5534CB9D1E2784DA003D5BF4 /* YQNavigationMenuTitleView.swift in Sources */,
+				5534CBA11E278C5B003D5BF4 /* YQNavigationMenuTitleLabel.swift in Sources */,
+				55D427711E272B5A008AC89C /* YQNavigationMenuController.swift in Sources */,
+				5534CB991E27376B003D5BF4 /* YQNavigationMenuCollectionCell.swift in Sources */,
+				5534CB911E2730AE003D5BF4 /* YQNavigationMenuCollectionLayout.swift in Sources */,
 				55D4275C1E272AD8008AC89C /* YQNavigationMenuControllerUITests.swift in Sources */,
+				5534CB951E2731E7003D5BF4 /* UIView+YQNMCExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +469,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = GP4MMMES25;
 				INFOPLIST_FILE = YQNavigationMenuController/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wyq.YQNavigationMenuController;
@@ -422,6 +482,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = GP4MMMES25;
 				INFOPLIST_FILE = YQNavigationMenuController/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wyq.YQNavigationMenuController;
@@ -435,6 +496,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = GP4MMMES25;
 				INFOPLIST_FILE = YQNavigationMenuControllerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wyq.YQNavigationMenuControllerTests;
@@ -449,6 +511,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = GP4MMMES25;
 				INFOPLIST_FILE = YQNavigationMenuControllerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wyq.YQNavigationMenuControllerTests;
@@ -462,6 +525,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = GP4MMMES25;
 				INFOPLIST_FILE = YQNavigationMenuControllerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wyq.YQNavigationMenuControllerUITests;
@@ -475,6 +539,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = GP4MMMES25;
 				INFOPLIST_FILE = YQNavigationMenuControllerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wyq.YQNavigationMenuControllerUITests;
@@ -503,6 +568,7 @@
 				55D427621E272AD8008AC89C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		55D427631E272AD8008AC89C /* Build configuration list for PBXNativeTarget "YQNavigationMenuControllerTests" */ = {
 			isa = XCConfigurationList;
@@ -511,6 +577,7 @@
 				55D427651E272AD8008AC89C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		55D427661E272AD8008AC89C /* Build configuration list for PBXNativeTarget "YQNavigationMenuControllerUITests" */ = {
 			isa = XCConfigurationList;
@@ -519,6 +586,7 @@
 				55D427681E272AD8008AC89C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

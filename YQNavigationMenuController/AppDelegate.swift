@@ -16,6 +16,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if let navMenuController = self.window?.rootViewController?.childViewControllers.first as? YQNavigationMenuController{
+            var items: [UIViewController] = []
+            for index in 0 ... 100 {
+                let controller = ViewController()
+                controller.title = "Title \(index)"
+                items.append(controller)
+            }
+            navMenuController.items = items;
+        }
+
         return true
     }
 
