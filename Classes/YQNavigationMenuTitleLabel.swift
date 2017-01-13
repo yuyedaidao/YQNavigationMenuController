@@ -27,7 +27,6 @@ class YQNavigationMenuTitleLabel: UIView {
                 self.label.transform = CGAffineTransform.identity
                 self.label.textColor = normalColor
             }
-            
         }
     }
     
@@ -40,26 +39,10 @@ class YQNavigationMenuTitleLabel: UIView {
 
     
     lazy var textSize: CGSize = {
-//        UIGraphicsBeginImageContext(CGSize(width: 1000, height: 100))
-//        if let context = UIGraphicsGetCurrentContext() {
-//            context.textMatrix = CGAffineTransform.identity
-//            let path = CGMutablePath()
-//            path.addRect(self.bounds)
-//            let attributedString = NSMutableAttributedString(string: self.text)
-//            attributedString.addAttribute(NSFontAttributeName, value: self.font, range: NSMakeRange(0, attributedString.length))
-//            let framesetter = CTFramesetterCreateWithAttributedString(attributedString)
-//            let restrictSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
-//            size = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, 0) , nil, restrictSize, nil)
-//        }
-//        
-//        UIGraphicsEndImageContext()
-        //计算文字大小
-      
         let attributes = [NSFontAttributeName: self.font]
         let option = NSStringDrawingOptions.usesLineFragmentOrigin
         let rect:CGRect = self.text.boundingRect(with: CGSize(width: 1000, height: 100), options: option, attributes: attributes, context: nil)
         return rect.size
-        
     }()
     init(font: UIFont, normalColor: UIColor, selectedColor: UIColor, text: String, maxScale: CGFloat = 1) {
         self.font = font
@@ -107,25 +90,4 @@ class YQNavigationMenuTitleLabel: UIView {
         let scale = self.isSelected ?  maxScale - (maxScale - 1) * progress : 1 + (maxScale - 1) * progress
         self.label.transform = CGAffineTransform(scaleX: scale, y: scale)
     }
-    // An empty implementation adversely affects performance during animation.
-//    override func draw(_ rect: CGRect) {
-//        // Drawing code
-//        if let context = UIGraphicsGetCurrentContext() {
-//            context.textMatrix = CGAffineTransform.identity
-//            let scale = self.isSelected ?  maxScale - (maxScale - 1) * progress : 1 + (maxScale - 1) * progress
-//            print("scale :\(scale)")
-//            context.translateBy(x: (self.bounds.width - self.textSize.width * scale) / 2, y: self.bounds.height + (self.bounds.height - self.textSize.height * scale) / 2)
-//            context.scaleBy(x: scale, y: -scale)
-//            let path = CGMutablePath()
-//            path.addRect(self.bounds)
-//            let attributedString = NSMutableAttributedString(string: self.text)
-//            attributedString.addAttribute(NSFontAttributeName, value: self.font, range: NSMakeRange(0, attributedString.length))
-//            attributedString.addAttribute(NSForegroundColorAttributeName, value: self.normalColor, range: NSMakeRange(0, attributedString.length))
-//            let framesetter = CTFramesetterCreateWithAttributedString(attributedString)
-//            let frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, attributedString.length), path, nil)
-//            CTFrameDraw(frame, context)
-//        }
-//        
-//    }
-    
 }
