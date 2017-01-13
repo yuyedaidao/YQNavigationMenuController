@@ -19,19 +19,21 @@ class YQNavigationMenuController: UIViewController, UICollectionViewDelegate, UI
     }()
     
     var selectIndex: Int = 0
+    var currentIndex: Int = 0
     var items:[UIViewController] = []
-    var titleBarHeight: CGFloat = 28.0
+    var titleBarHeight: CGFloat = 36.0
     var titleBarColor: UIColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     var titleFont: UIFont = UIFont.systemFont(ofSize: 14)
     var titleNormalColor: UIColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
     var titleSelectedColor: UIColor = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
-    var titleColumnSpace: CGFloat = 8.0
+    var titleColumnSpace: CGFloat = 28.0
     var titleBarLineColor: UIColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     var titleBarLineHeight: CGFloat = 4.0
-    
+    var titleMaxScale: CGFloat = 1.1
     
     private var collectionTopSpaceConstraint: NSLayoutConstraint!
     private var titleBarHeightConstraint: NSLayoutConstraint!
+    private var lastOffsetX: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +44,7 @@ class YQNavigationMenuController: UIViewController, UICollectionViewDelegate, UI
         self.collectionView.isPagingEnabled = true
         self.view.addSubview(collectionView)
         
-        self.titleView = YQNavigationMenuTitleView(font: titleFont, normalColor: titleNormalColor, selectedColor: titleSelectedColor)
+        self.titleView = YQNavigationMenuTitleView(font: titleFont, normalColor: titleNormalColor, selectedColor: titleSelectedColor, columnSpace: titleColumnSpace, maxScale: titleMaxScale)
         self.view.addSubview(titleView)
         titleView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addConstraint(NSLayoutConstraint(item: titleView, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: .leading, multiplier: 1, constant: 0))
@@ -64,6 +66,7 @@ class YQNavigationMenuController: UIViewController, UICollectionViewDelegate, UI
         self.titleView.titles = self.items.map({ (vc) -> String in
             return vc.title!
         })
+        self.titleView.titleLabels[self.selectIndex].isSelected = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,11 +87,45 @@ class YQNavigationMenuController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let centerX = scrollView.contentOffset.x + scrollView.frame.midX
+        let index = Int(centerX / scrollView.frame.width)
+        let delta = (scrollView.contentOffset.x - lastOffsetX) / scrollView.frame.width;
+        self.titleView.titleLabels[self.selectIndex].progress = min(abs(delta), 1)
+        if delta > 0 {
+            if self.selectIndex + 1 < self.items.count {
+                self.titleView.titleLabels[self.selectIndex + 1].progress = min(abs(delta), 1)
+            }
+        }
+        if (delta < 0) {
+            if self.selectIndex > 0 {
+                self.titleView.titleLabels[self.selectIndex - 1].progress = min(abs(delta), 1)
+            }
+        }
+        if currentIndex != index {
+            currentIndex = index
+        }
         
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        
+        self.changeSelectItem(withScrollView: scrollView)
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if (!decelerate) {
+            self.changeSelectItem(withScrollView: scrollView)
+        }
+    }
+    
+    func changeSelectItem(withScrollView scrollView: UIScrollView) {
+        self.lastOffsetX = scrollView.contentOffset.x;
+        if (self.selectIndex != currentIndex) {
+            self.titleView.titleLabels[self.selectIndex].isSelected = false
+        }
+        self.selectIndex = self.currentIndex;
+        let selectedLabel = self.titleView.titleLabels[self.selectIndex]
+        selectedLabel.isSelected = true
+        self.titleView.scrollView.setContentOffset(CGPoint(x: min(self.titleView.scrollView.contentSize.width - self.titleView.frame.width, max(0, selectedLabel.frame.midX - self.titleView.scrollView.frame.midX)), y: 0), animated: true)
     }
     /*
     // MARK: - Navigation

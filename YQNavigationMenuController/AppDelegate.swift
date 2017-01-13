@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             var items: [UIViewController] = []
             for index in 0 ... 100 {
                 let controller = ViewController()
-                controller.title = "Title \(index)"
+                controller.title = "标题 \(index)"
                 items.append(controller)
             }
             navMenuController.items = items;
