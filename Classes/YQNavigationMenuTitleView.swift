@@ -29,14 +29,20 @@ class YQNavigationMenuTitleView: UIView {
     var selectedColor: UIColor
     var columnSpace: CGFloat
     var maxScale: CGFloat
+    var lineColor: UIColor
+    var lineHeight: CGFloat
+    private var bottomLine: UIView
     
-    init(font: UIFont, normalColor: UIColor, selectedColor: UIColor, columnSpace: CGFloat, maxScale: CGFloat) {
+    init(font: UIFont, normalColor: UIColor, selectedColor: UIColor, columnSpace: CGFloat, maxScale: CGFloat, lineColor: UIColor, lineHeight: CGFloat) {
         self.font = font
         self.normalColor = normalColor
         self.selectedColor = selectedColor
         self.columnSpace = columnSpace
         self.maxScale = maxScale
+        self.lineColor = lineColor
+        self.lineHeight = lineHeight
         self.scrollView = UIScrollView()
+        self.bottomLine = UIView()
         super.init(frame: CGRect.zero)
         self.prepareViews()
     }
@@ -44,6 +50,8 @@ class YQNavigationMenuTitleView: UIView {
     func prepareViews() {
         self.addSubview(self.scrollView)
         self.scrollView.fillSuperView()
+//        self.bottomLine.backgroundColor = lineColor
+//        self.scrollView.addSubview(bottomLine)
     }
     
 //    override init(frame: CGRect) {
@@ -75,5 +83,8 @@ class YQNavigationMenuTitleView: UIView {
         for label in self.titleLabels {
             label.frame.size.height = self.bounds.height
         }
+//        if let label = self.titleLabels.first {
+//        self.bottomLine.frame = CGRect(x: label.frame.minX + , y: label.bounds.height - self.lineHeight, width: label.bounds.width, height: self.lineHeight)
+//        }
     }
 }

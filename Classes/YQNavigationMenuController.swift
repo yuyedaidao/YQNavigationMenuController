@@ -30,7 +30,7 @@ class YQNavigationMenuController: UIViewController, UICollectionViewDelegate, UI
     var titleBarLineColor: UIColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     var titleBarLineHeight: CGFloat = 4.0
     var titleMaxScale: CGFloat = 1.1
-    
+
     private var collectionTopSpaceConstraint: NSLayoutConstraint!
     private var titleBarHeightConstraint: NSLayoutConstraint!
     private var lastOffsetX: CGFloat = 0
@@ -44,8 +44,9 @@ class YQNavigationMenuController: UIViewController, UICollectionViewDelegate, UI
         self.collectionView.isPagingEnabled = true
         self.view.addSubview(collectionView)
         
-        self.titleView = YQNavigationMenuTitleView(font: titleFont, normalColor: titleNormalColor, selectedColor: titleSelectedColor, columnSpace: titleColumnSpace, maxScale: titleMaxScale)
+        self.titleView = YQNavigationMenuTitleView(font: titleFont, normalColor: titleNormalColor, selectedColor: titleSelectedColor, columnSpace: titleColumnSpace, maxScale: titleMaxScale, lineColor: titleBarLineColor, lineHeight: titleBarLineHeight)
         self.view.addSubview(titleView)
+        
         titleView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addConstraint(NSLayoutConstraint(item: titleView, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: .leading, multiplier: 1, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: titleView, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 1, constant: 0))
@@ -96,7 +97,7 @@ class YQNavigationMenuController: UIViewController, UICollectionViewDelegate, UI
                 self.titleView.titleLabels[self.selectIndex + 1].progress = min(abs(delta), 1)
             }
         }
-        if (delta < 0) {
+        if delta < 0 {
             if self.selectIndex > 0 {
                 self.titleView.titleLabels[self.selectIndex - 1].progress = min(abs(delta), 1)
             }
@@ -119,8 +120,13 @@ class YQNavigationMenuController: UIViewController, UICollectionViewDelegate, UI
     
     func changeSelectItem(withScrollView scrollView: UIScrollView) {
         self.lastOffsetX = scrollView.contentOffset.x;
-        if (self.selectIndex != currentIndex) {
-            self.titleView.titleLabels[self.selectIndex].isSelected = false
+        for index in -1 ... 1 {
+            if self.selectIndex != currentIndex {
+                let idx = self.selectIndex + index
+                if idx >= 0 && idx < self.items.count {
+                    self.titleView.titleLabels[idx].isSelected = false
+                }
+            }
         }
         self.selectIndex = self.currentIndex;
         let selectedLabel = self.titleView.titleLabels[self.selectIndex]
