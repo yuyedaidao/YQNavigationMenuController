@@ -8,7 +8,7 @@
 
 import UIKit
 
-class YQNavigationMenuController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+open class YQNavigationMenuController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     private var collectionView: UICollectionView!
     private var titleView: YQNavigationMenuTitleView!
@@ -35,7 +35,7 @@ class YQNavigationMenuController: UIViewController, UICollectionViewDelegate, UI
     private var titleBarHeightConstraint: NSLayoutConstraint!
     private var lastOffsetX: CGFloat = 0
     
-    override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         
         // collectionView
@@ -70,24 +70,24 @@ class YQNavigationMenuController: UIViewController, UICollectionViewDelegate, UI
         self.titleView.titleLabels[self.selectIndex].isSelected = true
     }
 
-    override func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     //MARK: - collection
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.items.count;
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: YQNavigationMenuCollectionCell.self), for: indexPath) as! YQNavigationMenuCollectionCell
         cell.add(controller: self.items[indexPath.item], toParentController: self)
         return cell
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let centerX = scrollView.contentOffset.x + scrollView.frame.midX
         let index = Int(centerX / scrollView.frame.width)
         let delta = (scrollView.contentOffset.x - lastOffsetX) / scrollView.frame.width;
@@ -108,11 +108,11 @@ class YQNavigationMenuController: UIViewController, UICollectionViewDelegate, UI
         
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         self.changeSelectItem(withScrollView: scrollView)
     }
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if (!decelerate) {
             self.changeSelectItem(withScrollView: scrollView)
         }
