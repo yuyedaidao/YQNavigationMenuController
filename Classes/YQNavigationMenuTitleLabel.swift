@@ -60,6 +60,7 @@ class YQNavigationMenuTitleLabel: UIView {
         self.rgbDifference = [selectedColorRGB[0] - normalColorRGB[0], selectedColorRGB[1] - normalColorRGB[1], selectedColorRGB[2] - normalColorRGB[2]]
         super.init(frame: CGRect.zero)
         self.label.text = text
+        self.label.font = font
         self.label.sizeToFit()
         self.addSubview(label)
     }

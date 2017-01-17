@@ -13,14 +13,28 @@ open class YQNavigationMenuController: UIViewController, UICollectionViewDelegat
     private var collectionView: UICollectionView!
     private var titleView: YQNavigationMenuTitleView!
     
-    
     private lazy var collectionLayout: YQNavigationMenuCollectionLayout = {
         return YQNavigationMenuCollectionLayout()
     }()
     
-    var selectIndex: Int = 0
+    var selectIndex: Int = 0 {
+        didSet {
+            if selectIndex < self.items.count {
+                let selectedLabel = self.titleView.titleLabels[selectIndex]
+                selectedLabel.isSelected = true
+                self.titleView.scrollView.setContentOffset(CGPoint(x: min(self.titleView.scrollView.contentSize.width - self.titleView.frame.width, max(0, selectedLabel.frame.midX - self.titleView.scrollView.frame.midX)), y: 0), animated: true)
+            }
+        }
+    }
+    
     var currentIndex: Int = 0
-    var items:[UIViewController] = []
+    private var items:[UIViewController] = [] {
+        didSet {
+            if self.isViewLoaded {
+                self.prepareViews()
+            }
+        }
+    }
     var titleBarHeight: CGFloat = 36.0
     var titleBarColor: UIColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     var titleFont: UIFont = UIFont.systemFont(ofSize: 14)
@@ -35,10 +49,18 @@ open class YQNavigationMenuController: UIViewController, UICollectionViewDelegat
     private var titleBarHeightConstraint: NSLayoutConstraint!
     private var lastOffsetX: CGFloat = 0
     
+    public func setItems(_ items: [UIViewController]) {
+        self.items = items
+    }
+    
     override open func viewDidLoad() {
         super.viewDidLoad()
-        
-        // collectionView
+        if self.items.count > 0 {
+            self.prepareViews()
+        }
+    }
+    
+    func prepareViews() {
         self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: self.collectionLayout)
         self.collectionView.register(YQNavigationMenuCollectionCell.self, forCellWithReuseIdentifier: "\(YQNavigationMenuCollectionCell.self)")
         self.collectionView.isPagingEnabled = true
@@ -63,10 +85,11 @@ open class YQNavigationMenuController: UIViewController, UICollectionViewDelegat
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        
+    
         self.titleView.titles = self.items.map({ (vc) -> String in
             return vc.title!
         })
+        assert(self.selectIndex < self.items.count, "您选中的视图序号不在范围内")
         self.titleView.titleLabels[self.selectIndex].isSelected = true
     }
 
@@ -129,9 +152,10 @@ open class YQNavigationMenuController: UIViewController, UICollectionViewDelegat
             }
         }
         self.selectIndex = self.currentIndex;
-        let selectedLabel = self.titleView.titleLabels[self.selectIndex]
-        selectedLabel.isSelected = true
-        self.titleView.scrollView.setContentOffset(CGPoint(x: min(self.titleView.scrollView.contentSize.width - self.titleView.frame.width, max(0, selectedLabel.frame.midX - self.titleView.scrollView.frame.midX)), y: 0), animated: true)
+    }
+    
+    func scrollToIndex(_ index: Int) {
+        
     }
     /*
     // MARK: - Navigation
