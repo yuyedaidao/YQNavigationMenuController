@@ -8,15 +8,9 @@
 
 import UIKit
 
-class YQNavigationMenuTitleView: UIView {
+class YQNavigationMenuTitleView: UIView, YQNavigationMenuTitleLabelDelegate {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
+    var tapTitleClosure: ((_ index: Int, _ titleView: YQNavigationMenuTitleView) -> Void)?
     var scrollView: UIScrollView
     var titles: [String] = [] {
         didSet {
@@ -31,6 +25,7 @@ class YQNavigationMenuTitleView: UIView {
     var maxScale: CGFloat
     var lineColor: UIColor
     var lineHeight: CGFloat
+    
     private var bottomLine: UIView
     
     init(font: UIFont, normalColor: UIColor, selectedColor: UIColor, columnSpace: CGFloat, maxScale: CGFloat, lineColor: UIColor, lineHeight: CGFloat) {
@@ -49,16 +44,11 @@ class YQNavigationMenuTitleView: UIView {
     
     func prepareViews() {
         self.addSubview(self.scrollView)
+        self.scrollView.bounces = false
+        self.scrollView.showsVerticalScrollIndicator = false
+        self.scrollView.showsHorizontalScrollIndicator = false
         self.scrollView.fillSuperView()
-//        self.bottomLine.backgroundColor = lineColor
-//        self.scrollView.addSubview(bottomLine)
     }
-    
-//    override init(frame: CGRect) {
-//        self.scrollView = UIScrollView()
-//        super.init(frame: frame)
-//        self.addSubview(scrollView)
-//    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -69,6 +59,7 @@ class YQNavigationMenuTitleView: UIView {
         for (index, title) in titles.enumerated() {
             let label = YQNavigationMenuTitleLabel(font: font, normalColor: normalColor, selectedColor: selectedColor, text: title, maxScale: maxScale)
             label.tag = index
+            label.delegate = self
             let width = label.textSize.width + self.columnSpace
             label.frame = CGRect(x: originX, y: 0, width: width, height: 0)//高之所以是0是因为这时候还没法确定高
             self.scrollView.addSubview(label)
@@ -86,5 +77,12 @@ class YQNavigationMenuTitleView: UIView {
 //        if let label = self.titleLabels.first {
 //        self.bottomLine.frame = CGRect(x: label.frame.minX + , y: label.bounds.height - self.lineHeight, width: label.bounds.width, height: self.lineHeight)
 //        }
+    }
+    
+    //MARK: - delegate label
+    func didTapLabel(_ label: YQNavigationMenuTitleLabel) {
+        if let closure = self.tapTitleClosure {
+            closure(label.tag, self)
+        }
     }
 }

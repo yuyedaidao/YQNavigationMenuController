@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 controller.title = "标题 \(index)"
                 items.append(controller)
             }
-            navMenuController.items = items;
+            navMenuController.setItems(items)
         }
 
         return true

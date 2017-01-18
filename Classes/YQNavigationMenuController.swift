@@ -21,7 +21,14 @@ open class YQNavigationMenuController: UIViewController, UICollectionViewDelegat
         didSet {
             if selectIndex < self.items.count {
                 let selectedLabel = self.titleView.titleLabels[selectIndex]
-                selectedLabel.isSelected = true
+                if !self.isDeltaEnabled {
+                    UIView.animate(withDuration: 0.25, animations: { 
+                        selectedLabel.isSelected = true
+                    })
+                } else {
+                    selectedLabel.isSelected = true
+                }
+
                 self.titleView.scrollView.setContentOffset(CGPoint(x: min(self.titleView.scrollView.contentSize.width - self.titleView.frame.width, max(0, selectedLabel.frame.midX - self.titleView.scrollView.frame.midX)), y: 0), animated: true)
             }
         }
@@ -48,7 +55,7 @@ open class YQNavigationMenuController: UIViewController, UICollectionViewDelegat
     private var collectionTopSpaceConstraint: NSLayoutConstraint!
     private var titleBarHeightConstraint: NSLayoutConstraint!
     private var lastOffsetX: CGFloat = 0
-    
+    private var isDeltaEnabled = true
     public func setItems(_ items: [UIViewController]) {
         self.items = items
     }
@@ -64,9 +71,19 @@ open class YQNavigationMenuController: UIViewController, UICollectionViewDelegat
         self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: self.collectionLayout)
         self.collectionView.register(YQNavigationMenuCollectionCell.self, forCellWithReuseIdentifier: "\(YQNavigationMenuCollectionCell.self)")
         self.collectionView.isPagingEnabled = true
+        self.collectionView.showsVerticalScrollIndicator = false
+        self.collectionView.showsHorizontalScrollIndicator = false
+        self.collectionView.bounces = false
         self.view.addSubview(collectionView)
         
         self.titleView = YQNavigationMenuTitleView(font: titleFont, normalColor: titleNormalColor, selectedColor: titleSelectedColor, columnSpace: titleColumnSpace, maxScale: titleMaxScale, lineColor: titleBarLineColor, lineHeight: titleBarLineHeight)
+        self.titleView.tapTitleClosure = { (index, titleView) in
+            if self.selectIndex != index {
+//                titleView.titleLabels[self.selectIndex].isSelected = false
+                self.isDeltaEnabled = false
+                self.collectionView.setContentOffset(CGPoint(x: CGFloat(index) * self.view.bounds.width, y: 0), animated: true)
+            }
+        }
         self.view.addSubview(titleView)
         
         titleView.translatesAutoresizingMaskIntoConstraints = false
@@ -111,8 +128,10 @@ open class YQNavigationMenuController: UIViewController, UICollectionViewDelegat
     }
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let centerX = scrollView.contentOffset.x + scrollView.frame.midX
-        let index = Int(centerX / scrollView.frame.width)
+        guard isDeltaEnabled else {
+            return
+        }
+        let index = self.getScrollIndex(scrollView)
         let delta = (scrollView.contentOffset.x - lastOffsetX) / scrollView.frame.width;
         self.titleView.titleLabels[self.selectIndex].progress = min(abs(delta), 1)
         if delta > 0 {
@@ -128,7 +147,6 @@ open class YQNavigationMenuController: UIViewController, UICollectionViewDelegat
         if currentIndex != index {
             currentIndex = index
         }
-        
     }
     
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -141,21 +159,37 @@ open class YQNavigationMenuController: UIViewController, UICollectionViewDelegat
         }
     }
     
+    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        self.currentIndex = self.getScrollIndex(scrollView)
+        self.changeSelectItem(withScrollView: scrollView)
+        self.isDeltaEnabled = true
+    }
+    
     func changeSelectItem(withScrollView scrollView: UIScrollView) {
         self.lastOffsetX = scrollView.contentOffset.x;
-        for index in -1 ... 1 {
-            if self.selectIndex != currentIndex {
-                let idx = self.selectIndex + index
-                if idx >= 0 && idx < self.items.count {
-                    self.titleView.titleLabels[idx].isSelected = false
+        func cancelSelected() {
+            for index in -1 ... 1 {
+                if self.selectIndex != currentIndex {
+                    let idx = self.selectIndex + index
+                    if idx >= 0 && idx < self.items.count {
+                        self.titleView.titleLabels[idx].isSelected = false
+                    }
                 }
             }
+        }
+        if !self.isDeltaEnabled {
+            UIView.animate(withDuration: 0.25, animations: { 
+                cancelSelected()
+            })
+        } else {
+            cancelSelected()
         }
         self.selectIndex = self.currentIndex;
     }
     
-    func scrollToIndex(_ index: Int) {
-        
+    func getScrollIndex(_ scrollView: UIScrollView) -> Int{
+        let centerX = scrollView.contentOffset.x + scrollView.frame.midX
+        return Int(centerX / scrollView.frame.width)
     }
     /*
     // MARK: - Navigation

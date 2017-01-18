@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol YQNavigationMenuTitleLabelDelegate {
+    func didTapLabel(_ label: YQNavigationMenuTitleLabel)
+}
+
 class YQNavigationMenuTitleLabel: UIView {
     
     private let normalColor: UIColor
@@ -44,6 +48,10 @@ class YQNavigationMenuTitleLabel: UIView {
         let rect:CGRect = self.text.boundingRect(with: CGSize(width: 1000, height: 100), options: option, attributes: attributes, context: nil)
         return rect.size
     }()
+    
+    private let tapGesture: UITapGestureRecognizer
+    var delegate: YQNavigationMenuTitleLabelDelegate?
+    
     init(font: UIFont, normalColor: UIColor, selectedColor: UIColor, text: String, maxScale: CGFloat = 1) {
         self.font = font
         self.normalColor = normalColor
@@ -58,10 +66,13 @@ class YQNavigationMenuTitleLabel: UIView {
         selectedColor.getRed(&r, green: &g, blue: &b, alpha: nil)
         self.selectedColorRGB = [r, g, b]
         self.rgbDifference = [selectedColorRGB[0] - normalColorRGB[0], selectedColorRGB[1] - normalColorRGB[1], selectedColorRGB[2] - normalColorRGB[2]]
+        tapGesture = UITapGestureRecognizer()
         super.init(frame: CGRect.zero)
         self.label.text = text
         self.label.font = font
         self.label.sizeToFit()
+        tapGesture.addTarget(self, action: #selector(tapAction(_:)))
+        self.addGestureRecognizer(tapGesture)
         self.addSubview(label)
     }
     
@@ -91,4 +102,11 @@ class YQNavigationMenuTitleLabel: UIView {
         let scale = self.isSelected ?  maxScale - (maxScale - 1) * progress : 1 + (maxScale - 1) * progress
         self.label.transform = CGAffineTransform(scaleX: scale, y: scale)
     }
+    
+    func tapAction(_ gesture: UITapGestureRecognizer) {
+        if let delegate = self.delegate {
+            delegate.didTapLabel(self)
+        }
+    }
+    
 }
