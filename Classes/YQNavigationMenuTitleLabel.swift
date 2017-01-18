@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol YQNavigationMenuTitleLabelDelegate {
+@objc protocol YQNavigationMenuTitleLabelDelegate {
     func didTapLabel(_ label: YQNavigationMenuTitleLabel)
 }
 
@@ -50,7 +50,7 @@ class YQNavigationMenuTitleLabel: UIView {
     }()
     
     private let tapGesture: UITapGestureRecognizer
-    var delegate: YQNavigationMenuTitleLabelDelegate?
+    weak var delegate: YQNavigationMenuTitleLabelDelegate?
     
     init(font: UIFont, normalColor: UIColor, selectedColor: UIColor, text: String, maxScale: CGFloat = 1) {
         self.font = font
@@ -104,9 +104,7 @@ class YQNavigationMenuTitleLabel: UIView {
     }
     
     func tapAction(_ gesture: UITapGestureRecognizer) {
-        if let delegate = self.delegate {
-            delegate.didTapLabel(self)
-        }
+        delegate?.didTapLabel(self)
     }
     
 }

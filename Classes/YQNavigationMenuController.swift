@@ -77,11 +77,13 @@ open class YQNavigationMenuController: UIViewController, UICollectionViewDelegat
         self.view.addSubview(collectionView)
         
         self.titleView = YQNavigationMenuTitleView(font: titleFont, normalColor: titleNormalColor, selectedColor: titleSelectedColor, columnSpace: titleColumnSpace, maxScale: titleMaxScale, lineColor: titleBarLineColor, lineHeight: titleBarLineHeight)
-        self.titleView.tapTitleClosure = { (index, titleView) in
-            if self.selectIndex != index {
-//                titleView.titleLabels[self.selectIndex].isSelected = false
-                self.isDeltaEnabled = false
-                self.collectionView.setContentOffset(CGPoint(x: CGFloat(index) * self.view.bounds.width, y: 0), animated: true)
+        self.titleView.tapTitleClosure = {[weak self] (index, titleView) in
+            if let s = self {
+                if s.selectIndex != index {
+    //                titleView.titleLabels[self.selectIndex].isSelected = false
+                    s.isDeltaEnabled = false
+                    s.collectionView.setContentOffset(CGPoint(x: CGFloat(index) * s.view.bounds.width, y: 0), animated: true)
+                }
             }
         }
         self.view.addSubview(titleView)
