@@ -100,7 +100,7 @@ open class YQNavigationMenuController: UIViewController, UICollectionViewDelegat
         self.view.addConstraint(NSLayoutConstraint(item: collectionView, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 1, constant: 0))
         self.collectionTopSpaceConstraint = NSLayoutConstraint(item: collectionView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: self.titleBarHeight)
         self.view.addConstraint(collectionTopSpaceConstraint)
-        self.view.addConstraint(NSLayoutConstraint(item: collectionView, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: collectionView, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 1, constant: -self.titleBarHeight))
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
