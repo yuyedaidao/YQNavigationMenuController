@@ -18,6 +18,7 @@ class YQNavigationMenuCollectionCell: UICollectionViewCell {
             oldController.didMove(toParentViewController: nil)
         }
         self.addSubview(controller.view)
+        controller.view.fillSuperView()
         parentController.addChildViewController(controller)
         controller.didMove(toParentViewController: parentController)
     }
