@@ -11,6 +11,7 @@ import UIKit
 class YQNavigationMenuCollectionLayout: UICollectionViewFlowLayout {
     override func prepare() {
         super.prepare()
+        self.sectionInset = UIEdgeInsets.zero
         self.minimumLineSpacing = 0
         self.scrollDirection = .horizontal
         self.itemSize = (self.collectionView?.bounds.size)!

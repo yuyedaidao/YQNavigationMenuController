@@ -70,10 +70,12 @@ open class YQNavigationMenuController: UIViewController, UICollectionViewDelegat
     func prepareViews() {
         self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: self.collectionLayout)
         self.collectionView.register(YQNavigationMenuCollectionCell.self, forCellWithReuseIdentifier: "\(YQNavigationMenuCollectionCell.self)")
+        self.collectionView.backgroundColor = self.view.backgroundColor
         self.collectionView.isPagingEnabled = true
         self.collectionView.showsVerticalScrollIndicator = false
         self.collectionView.showsHorizontalScrollIndicator = false
         self.collectionView.bounces = false
+        self.automaticallyAdjustsScrollViewInsets = false//解决再次出现页面时布局顶部下移问题                                                                                                                                                                                                                                                                                                                                    
         self.view.addSubview(collectionView)
         
         self.titleView = YQNavigationMenuTitleView(font: titleFont, normalColor: titleNormalColor, selectedColor: titleSelectedColor, columnSpace: titleColumnSpace, maxScale: titleMaxScale, lineColor: titleBarLineColor, lineHeight: titleBarLineHeight)
