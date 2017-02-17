@@ -52,7 +52,7 @@ open class YQNavigationMenuController: UIViewController, UICollectionViewDelegat
     var titleBarLineHeight: CGFloat = 4.0
     var titleMaxScale: CGFloat = 1.1
 
-    private var collectionTopSpaceConstraint: NSLayoutConstraint!
+//    private var collectionTopSpaceConstraint: NSLayoutConstraint!
     private var titleBarHeightConstraint: NSLayoutConstraint!
     private var lastOffsetX: CGFloat = 0
     private var isDeltaEnabled = true
@@ -91,16 +91,15 @@ open class YQNavigationMenuController: UIViewController, UICollectionViewDelegat
         titleView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addConstraint(NSLayoutConstraint(item: titleView, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: .leading, multiplier: 1, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: titleView, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: titleView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: titleView, attribute: .top, relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0))
         self.titleBarHeightConstraint = NSLayoutConstraint(item: titleView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: self.titleBarHeight)
         self.titleView.addConstraint(self.titleBarHeightConstraint)
         
         self.collectionView.translatesAutoresizingMaskIntoConstraints =  false
         self.view.addConstraint(NSLayoutConstraint(item: collectionView, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: .leading, multiplier: 1, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: collectionView, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 1, constant: 0))
-        self.collectionTopSpaceConstraint = NSLayoutConstraint(item: collectionView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: self.titleBarHeight)
-        self.view.addConstraint(collectionTopSpaceConstraint)
-        self.view.addConstraint(NSLayoutConstraint(item: collectionView, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 1, constant: -self.titleBarHeight))
+        self.view.addConstraint(NSLayoutConstraint(item: collectionView, attribute: .top, relatedBy: .equal, toItem: self.titleView, attribute: .bottom, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: collectionView, attribute: .bottom, relatedBy: .equal, toItem: self.bottomLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0))
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
